@@ -2,56 +2,87 @@
 sidebar_position: 2
 ---
 
-# Create a Document
+# Property-Based Targeting
 
-Documents are **groups of pages** connected through:
+Target users with surveys based on **their attributes and characteristics**.
 
-- a **sidebar**
-- **previous/next navigation**
-- **versioning**
+## Why Property-Based Targeting?
 
-## Create your first Doc
+Property-based targeting lets you show surveys to specific user segments:
 
-Create a Markdown file at `docs/hello.md`:
+- **User properties** - Target by plan type, signup date, company size
+- **Event properties** - Target based on properties from past events
+- **Person properties** - Target using enriched user data
 
-```md title="docs/hello.md"
-# Hello
+## Setting Up Property-Based Surveys
 
-This is my **first Docusaurus document**!
+<!-- TODO: Add step-by-step instructions for creating a property-based survey -->
+
+### Step 1: Identify Your Target Properties
+
+First, ensure you're capturing the properties you want to target:
+
+```javascript
+// Set user properties
+posthog.identify('user_123', {
+  plan: 'enterprise',
+  company_size: 'large',
+  signup_date: '2024-01-15'
+});
+
+// Or capture with event properties
+posthog.capture('page_viewed', {
+  page_type: 'pricing',
+  referrer: 'google'
+});
 ```
 
-A new document is now available at [http://localhost:3000/docs/hello](http://localhost:3000/docs/hello).
+### Step 2: Configure Property Conditions
 
-## Configure the Sidebar
+In your survey's display conditions, add property filters:
 
-Docusaurus automatically **creates a sidebar** from the `docs` folder.
+<!-- TODO: Add screenshot of property filter UI -->
 
-Add metadata to customize the sidebar label and position:
+### Step 3: Define Your Targeting Logic
 
-```md title="docs/hello.md" {1-4}
----
-sidebar_label: 'Hi!'
-sidebar_position: 3
----
+Combine multiple properties with AND/OR logic for precise targeting.
 
-# Hello
+## Common Property Targeting Patterns
 
-This is my **first Docusaurus document**!
+| Target Segment | Property Filter | Use Case |
+|----------------|-----------------|----------|
+| Enterprise users | `plan = 'enterprise'` | Premium feature feedback |
+| New users | `signup_date > 7 days ago` | Onboarding experience |
+| Power users | `events_count > 100` | Advanced feature requests |
+| Specific industry | `industry = 'healthcare'` | Industry-specific feedback |
+
+## Combining with Events
+
+Property targeting becomes powerful when combined with event targeting:
+
+```
+Show survey when:
+  - Event: checkout_completed
+  - AND Property: plan = 'free'
+  - AND Property: cart_value > 50
 ```
 
-It is also possible to create your sidebar explicitly in `sidebars.js`:
+This targets free users who just completed a high-value checkout—perfect for upgrade prompts.
 
-```js title="sidebars.js"
-export default {
-  tutorialSidebar: [
-    'intro',
-    // highlight-next-line
-    'hello',
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: ['tutorial-basics/create-a-document'],
-    },
-  ],
-};
-```
+## Best Practices
+
+:::tip Keep Properties Updated
+
+Ensure your user properties are current. Stale data leads to poorly targeted surveys.
+
+:::
+
+:::caution Property Availability
+
+Properties must exist on the user before they can be targeted. Plan your data collection strategy accordingly.
+
+:::
+
+## Next Steps
+
+Learn about [Cohort-Based Targeting](./markdown-features.mdx) to target pre-defined user groups.

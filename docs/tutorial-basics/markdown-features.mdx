@@ -2,151 +2,118 @@
 sidebar_position: 4
 ---
 
-# Markdown Features
+# Cohort-Based Targeting
 
-Docusaurus supports **[Markdown](https://daringfireball.net/projects/markdown/syntax)** and a few **additional features**.
+Target users with surveys based on **pre-defined groups** in PostHog.
 
-## Front Matter
+## Why Cohort-Based Targeting?
 
-Markdown documents have metadata at the top called [Front Matter](https://jekyllrb.com/docs/front-matter/):
+Cohorts let you create reusable user segments that can be targeted across surveys, feature flags, and experiments:
 
-```text title="my-doc.md"
-// highlight-start
----
-id: my-doc-id
-title: My document title
-description: My document description
-slug: /my-custom-url
----
-// highlight-end
+- **Dynamic cohorts** - Automatically update as users meet criteria
+- **Static cohorts** - Fixed lists of users (e.g., beta testers)
+- **Behavioral cohorts** - Based on event sequences and patterns
 
-## Markdown heading
+## Understanding Cohorts
 
-Markdown text with [links](./hello.md)
+Cohorts in PostHog are groups of users who share common characteristics or behaviors.
+
+<!-- TODO: Add diagram showing cohort concept -->
+
+### Dynamic vs Static Cohorts
+
+| Type | Updates | Best For |
+|------|---------|----------|
+| Dynamic | Automatically | Behavioral segments, lifecycle stages |
+| Static | Manually | Beta groups, specific user lists |
+
+## Setting Up Cohort-Based Surveys
+
+<!-- TODO: Add step-by-step instructions for creating a cohort-based survey -->
+
+### Step 1: Create Your Cohort
+
+First, define your cohort in PostHog:
+
+```
+Cohort: "Checkout Abandoners"
+Criteria:
+  - Performed event: add_to_cart
+  - Did NOT perform event: checkout_completed
+  - In the last: 7 days
 ```
 
-## Links
+### Step 2: Link Cohort to Survey
 
-Regular Markdown links are supported, using url paths or relative file paths.
+In your survey's display conditions, select "Cohort" and choose your target cohort.
 
-```md
-Let's see how to [Create a page](/create-a-page).
+<!-- TODO: Add screenshot of cohort selection UI -->
+
+### Step 3: Monitor Cohort Membership
+
+Track how users enter and exit your cohort over time.
+
+## Common Cohort Patterns
+
+### Lifecycle Cohorts
+
+```
+"New Users" - Signed up in last 7 days
+"Active Users" - Performed any event in last 30 days  
+"At-Risk Users" - No activity in last 14 days
+"Churned Users" - No activity in last 60 days
 ```
 
-```md
-Let's see how to [Create a page](./create-a-page.md).
+### Behavioral Cohorts
+
+```
+"Power Users" - More than 50 sessions in last 30 days
+"Feature Adopters" - Used feature X at least 3 times
+"Upgrade Candidates" - Hit usage limits twice
 ```
 
-**Result:** Let's see how to [Create a page](./create-a-page.md).
+### Product Flow Cohorts
 
-## Images
-
-Regular Markdown images are supported.
-
-You can use absolute paths to reference images in the static directory (`static/img/docusaurus.png`):
-
-```md
-![Docusaurus logo](/img/docusaurus.png)
+```
+"Onboarding Complete" - Completed all onboarding steps
+"Checkout Abandoners" - Added to cart but didn't purchase
+"Trial Expiring" - Trial ends in next 3 days
 ```
 
-![Docusaurus logo](/img/docusaurus.png)
+## Interactive Example
 
-You can reference images relative to the current file as well. This is particularly useful to colocate images close to the Markdown files using them:
-
-```md
-![Docusaurus logo](./img/docusaurus.png)
-```
-
-## Code Blocks
-
-Markdown code blocks are supported with Syntax highlighting.
-
-````md
-```jsx title="src/components/HelloDocusaurus.js"
-function HelloDocusaurus() {
-  return <h1>Hello, Docusaurus!</h1>;
-}
-```
-````
-
-```jsx title="src/components/HelloDocusaurus.js"
-function HelloDocusaurus() {
-  return <h1>Hello, Docusaurus!</h1>;
-}
-```
-
-## Admonitions
-
-Docusaurus has a special syntax to create admonitions and callouts:
-
-```md
-:::tip My tip
-
-Use this awesome feature option
-
-:::
-
-:::danger Take care
-
-This action is dangerous
-
-:::
-```
-
-:::tip My tip
-
-Use this awesome feature option
-
-:::
-
-:::danger Take care
-
-This action is dangerous
-
-:::
-
-## MDX and React Components
-
-[MDX](https://mdxjs.com/) can make your documentation more **interactive** and allows using any **React components inside Markdown**:
-
-```jsx
-export const Highlight = ({children, color}) => (
-  <span
-    style={{
-      backgroundColor: color,
-      borderRadius: '20px',
-      color: '#fff',
-      padding: '10px',
-      cursor: 'pointer',
-    }}
-    onClick={() => {
-      alert(`You clicked the color ${color} with label ${children}`)
-    }}>
-    {children}
-  </span>
+export const CohortBuilder = () => (
+  <div style={{
+    padding: '20px',
+    border: '2px dashed #ccc',
+    borderRadius: '8px',
+    textAlign: 'center',
+    margin: '20px 0'
+  }}>
+    <p><strong>Interactive Cohort Builder</strong></p>
+    <p style={{color: '#666'}}>
+      {/* TODO: Build interactive cohort builder component */}
+      Placeholder for interactive cohort builder demo
+    </p>
+  </div>
 );
 
-This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
+<CohortBuilder />
 
-This is <Highlight color="#1877F2">Facebook blue</Highlight> !
-```
+## Best Practices
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{
-      backgroundColor: color,
-      borderRadius: '20px',
-      color: '#fff',
-      padding: '10px',
-      cursor: 'pointer',
-    }}
-    onClick={() => {
-      alert(`You clicked the color ${color} with label ${children}`);
-    }}>
-    {children}
-  </span>
-);
+:::tip Start with Existing Cohorts
 
-This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
+Before creating new cohorts for surveys, check if relevant cohorts already exist in your PostHog instance.
 
-This is <Highlight color="#1877F2">Facebook blue</Highlight> !
+:::
+
+:::caution Cohort Size
+
+Very small cohorts may not generate statistically significant survey results. Aim for cohorts with at least 100+ members.
+
+:::
+
+## Next Steps
+
+Learn about [Feature Flag Integration](./deploy-your-site.md) to coordinate surveys with feature rollouts.

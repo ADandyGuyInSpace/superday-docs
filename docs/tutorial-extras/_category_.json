@@ -1,7 +1,8 @@
 {
-  "label": "Tutorial - Extras",
+  "label": "Advanced Strategies",
   "position": 3,
   "link": {
-    "type": "generated-index"
+    "type": "generated-index",
+    "description": "Advanced techniques for targeting users with PostHog surveys."
   }
 }

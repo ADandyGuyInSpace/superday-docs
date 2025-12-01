@@ -1,30 +1,196 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+/* PostHog Inspired Theme */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #f7a501;
-  --ifm-color-primary-dark: #de9501;
-  --ifm-color-primary-darker: #d18c01;
-  --ifm-color-primary-darkest: #ad7401;
-  --ifm-color-primary-light: #f8b11a;
-  --ifm-color-primary-lighter: #f8b826;
-  --ifm-color-primary-lightest: #fac645;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+    /* PostHog Brand Colors */
+    --ifm-color-primary: #f54e00;
+    --ifm-color-primary-dark: #d14200;
+    --ifm-color-primary-darker: #c53e00;
+    --ifm-color-primary-darkest: #a23300;
+    --ifm-color-primary-light: #ff6b26;
+    --ifm-color-primary-lighter: #ff7a3b;
+    --ifm-color-primary-lightest: #ffa57a;
+
+    --ifm-font-family-base: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    --ifm-heading-font-family: 'Space Grotesk', var(--ifm-font-family-base);
+
+    /* Light Mode Backgrounds */
+    --ifm-background-color: #f3f0e7;
+    --ifm-background-surface-color: #ffffff;
+
+    --ifm-text-color: #1d1d1d;
+    --ifm-heading-color: #000000;
+
+    --ifm-navbar-background-color: #f3f0e7;
+    --ifm-footer-background-color: #1d1d1d;
+
+    --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+    /* Creative Borders */
+    --ifm-navbar-border-bottom: 2px solid #1d1d1d;
+    --ifm-footer-border-top: 2px solid #1d1d1d;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark Mode Overrides */
 [data-theme='dark'] {
-  --ifm-color-primary: #fbb635;
-  --ifm-color-primary-dark: #faa916;
-  --ifm-color-primary-darker: #f9a20a;
-  --ifm-color-primary-darkest: #d18c01;
-  --ifm-color-primary-light: #fcc254;
-  --ifm-color-primary-lighter: #fcc660;
-  --ifm-color-primary-lightest: #fed185;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+    --ifm-color-primary: #f54e00;
+    /* Keep orange popping */
+    --ifm-color-primary-dark: #d14200;
+    --ifm-color-primary-darker: #c53e00;
+    --ifm-color-primary-darkest: #a23300;
+    --ifm-color-primary-light: #ff6b26;
+    --ifm-color-primary-lighter: #ff7a3b;
+    --ifm-color-primary-lightest: #ffa57a;
+
+    --ifm-background-color: #1d1d1d;
+    --ifm-background-surface-color: #2c2c2c;
+
+    --ifm-text-color: #f3f0e7;
+    --ifm-heading-color: #ffffff;
+
+    --ifm-navbar-background-color: #1d1d1d;
+    --ifm-footer-background-color: #000000;
+
+    --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+
+    --ifm-navbar-border-bottom: 2px solid #f3f0e7;
+}
+
+/* Global Creative Touches */
+.navbar__title {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.button {
+    border-radius: 4px;
+    border: 2px solid transparent;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.button--primary {
+    border-color: #1d1d1d;
+    color: #fff;
+}
+
+.button--primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px #1d1d1d;
+}
+
+[data-theme='dark'] .button--primary {
+    background-color: var(--ifm-background-surface-color);
+    /* Light Beige in dark mode? No, surface is dark grey. Use explicit light color. */
+    background-color: var(--ifm-text-color);
+    /* Light Beige */
+    color: var(--ifm-background-color);
+    /* Dark Background color for text */
+    border-color: var(--ifm-text-color);
+}
+
+[data-theme='dark'] .button--primary:hover {
+    box-shadow: 4px 4px 0px var(--ifm-color-primary);
+    /* Orange Shadow */
+    background-color: #fff;
+    text-decoration: none;
+}
+
+[data-theme='dark'] .button--secondary {
+    color: var(--ifm-text-color);
+    border-color: var(--ifm-text-color);
+    background: transparent;
+}
+
+[data-theme='dark'] .button--secondary:hover {
+    box-shadow: 4px 4px 0px var(--ifm-color-primary);
+    /* Orange Shadow */
+    background-color: rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+}
+
+/* LLM Copy Button - PostHog Theme Integration */
+.copyButton {
+    /* Core Button Colors - matching PostHog style */
+    --llms-copy-bg: transparent;
+    --llms-copy-bg-hover: rgba(245, 78, 0, 0.1);
+    --llms-copy-bg-active: rgba(245, 78, 0, 0.15);
+    --llms-copy-text: var(--ifm-font-color-base);
+    --llms-copy-text-secondary: var(--ifm-color-emphasis-600);
+    --llms-copy-border: var(--ifm-color-primary);
+    
+    /* Layout & Spacing */
+    --llms-copy-padding: 8px 12px;
+    --llms-copy-gap: 6px;
+    --llms-copy-font-size: 13px;
+    --llms-copy-button-min-width: 120px;
+    
+    /* PostHog creative border style */
+    border: 2px solid var(--ifm-color-primary) !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.2s ease !important;
+}
+
+.copyButton:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .copyButton {
+    --llms-copy-bg: transparent;
+    --llms-copy-bg-hover: rgba(245, 78, 0, 0.2);
+    --llms-copy-text: var(--ifm-text-color);
+    --llms-copy-border: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .copyButton:hover {
+    box-shadow: 4px 4px 0px var(--ifm-color-primary);
+}
+
+/* Style the dropdown menu to match PostHog theme */
+[data-copy-page-button] {
+    position: relative;
+}
+
+[data-copy-page-button] button {
+    background: transparent;
+    border: 2px solid var(--ifm-color-primary);
+    border-radius: 4px;
+    color: var(--ifm-font-color-base);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+[data-copy-page-button] button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--ifm-color-primary);
+    background-color: rgba(245, 78, 0, 0.1);
+}
+
+[data-theme='dark'] [data-copy-page-button] button:hover {
+    background-color: rgba(245, 78, 0, 0.2);
+}
+
+/* Hide footer on homepage for clean aesthetic */
+body.homepage footer.footer {
+    display: none;
+}
+
+/* Make homepage take full height */
+body.homepage main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }

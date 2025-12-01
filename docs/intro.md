@@ -2,46 +2,72 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# From Noise to Signal: Why Targeted PostHog Surveys Win
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Surveys are only as good as the people you send them to.
 
-## Getting Started
+Most teams know they should talk to users. Fewer teams are intentional about *which* users they talk to, and *when*. The result is familiar: low response rates, vague feedback, and dashboards full of numbers that don’t actually change what you ship.
 
-Get started by **creating a new site**.
+Targeted surveys fix that.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Instead of blasting a generic form to your entire list, you use your product data to reach very specific groups of people at exactly the right moment.
 
-### What you'll need
+Think:
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- **New users** seeing an onboarding survey after their first session  
+- **Power users** giving feedback on advanced features  
+- **Churned customers** explaining why they left  
+- **Visitors on pricing pages** reacting to new messaging  
 
-## Generate a new site
+The point isn’t “more feedback.” It’s more **relevant** feedback that directly supports the decisions you’re trying to make about product, pricing, messaging, or UX.
 
-Generate a new Docusaurus site using the **classic template**.
+When you target surveys, three things happen:
 
-The classic template will automatically be added to your project after you run the command:
+1. **Data quality goes up.** You hear from people who actually use the thing you’re asking about, so their answers are concrete instead of hypothetical.  
+2. **Response rates improve.** The survey feels timely and personal (“As someone who just tried Feature X…”), not random.  
+3. **Insights become actionable.** Because surveys are tied to real user segments and behaviors, you can connect feedback to usage, revenue, and retention instead of treating it as standalone opinion.
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+## Why targeted surveys?
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+Collecting feedback from the right users at the right time is one of the fastest ways to improve key product flows.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+For example, you might want to:
 
-## Start your site
+- Ask users **why they abandoned checkout**
+- Understand **how they felt after completing an onboarding flow**
+- Gather feedback from users who **used a specific feature**
+- Survey users who **match certain behavioral patterns**
 
-Run the development server:
+With PostHog, you can do all of this by targeting users who’ve performed the same events or share common properties, directly from your product analytics.
 
-```bash
-cd my-website
-npm run start
-```
+## What you'll learn
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+In this tutorial, you’ll learn how to use PostHog Surveys with display conditions tied to:
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+- **Events** – Show surveys after specific user actions  
+- **Properties** – Target users based on their attributes  
+- **Cohorts** – Survey groups of users with shared characteristics  
+- **Feature flags** – Coordinate surveys with feature rollouts  
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+The goal is to help you move from “blast a link to everyone” to “ask a precise question to the exact users who can answer it.”
+
+## Prerequisites
+
+To follow along, you’ll need:
+
+- A PostHog account with the Surveys add-on enabled  
+- Basic familiarity with PostHog event tracking  
+- An application instrumented with a PostHog SDK  
+
+## Getting started
+
+You can:
+
+- Start with **Tutorial – Basics** to learn the core targeting methods, or  
+- Jump to **Tutorial – Extras** for more advanced targeting strategies  
+
+:::tip Start with events
+
+If you’re new to targeted surveys, begin with event-based targeting. It’s the most intuitive way to show surveys at the right moment in your user’s journey.
+
+:::

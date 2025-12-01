@@ -1,12 +1,12 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'PostHog SuperDay',
-  tagline: 'Good luck and have fun!',
+  title: 'Targeted Surveys with PostHog',
+  tagline: 'Learn to trigger surveys based on key user product flows',
   favicon: 'img/favicon.ico',
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -21,8 +21,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'posthog', // Usually your GitHub org/user name.
+  projectName: 'targeted-surveys-tutorial', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -35,6 +35,45 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Add the LLM theme
+  themes: ['@signalwire/docusaurus-theme-llms-txt'],
+
+  // Add the LLM plugin
+  plugins: [
+    [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        // Markdown file generation options
+        markdown: {
+          enableFiles: true,
+          relativePaths: true,
+          includeBlog: false,
+          includePages: false,
+          includeDocs: true,
+        },
+        // llms.txt index file configuration
+        llmsTxt: {
+          enableLlmsFullTxt: false,
+          includeDocs: true,
+          includeBlog: false,
+          includePages: false,
+          siteTitle: 'Targeted Surveys with PostHog',
+          siteDescription: 'Learn how to trigger surveys that target users based on key product flows',
+        },
+        // UI features - the copy button
+        ui: {
+          copyPageContent: {
+            buttonLabel: 'Copy for LLM',
+            display: {
+              docs: true,
+              excludeRoutes: [],
+            },
+          },
+        },
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
@@ -44,23 +83,9 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/posthog/targeted-surveys-tutorial/tree/main/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false, // Disable the blog plugin
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -72,9 +97,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'PostHog SuperDay',
+      title: 'Targeted Surveys',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'PostHog Logo',
         src: 'img/posthog-logo.svg',
       },
       items: [
@@ -84,10 +109,9 @@ const config: Config = {
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
+          href: 'https://posthog.com/docs/surveys',
+          label: 'PostHog Docs',
           position: 'right',
         },
       ],
@@ -96,11 +120,28 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Tutorial',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Introduction',
               to: '/docs/intro',
+            },
+          ],
+        },
+        {
+          title: 'PostHog Resources',
+          items: [
+            {
+              label: 'Surveys Documentation',
+              href: 'https://posthog.com/docs/surveys',
+            },
+            {
+              label: 'Feature Flags',
+              href: 'https://posthog.com/docs/feature-flags',
+            },
+            {
+              label: 'Cohorts',
+              href: 'https://posthog.com/docs/data/cohorts',
             },
           ],
         },
@@ -108,34 +149,17 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
+              label: 'PostHog Community',
+              href: 'https://posthog.com/community',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/posthog/posthog',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} PostHog. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

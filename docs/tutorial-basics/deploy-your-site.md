@@ -2,30 +2,113 @@
 sidebar_position: 5
 ---
 
-# Deploy your site
+# Feature Flag Integration
 
-Docusaurus is a **static-site-generator** (also called **[Jamstack](https://jamstack.org/)**).
+Coordinate surveys with **feature flag rollouts** to gather targeted feedback.
 
-It builds your site as simple **static HTML, JavaScript and CSS files**.
+## Why Feature Flag Integration?
 
-## Build your site
+Feature flags and surveys work together to:
 
-Build your site **for production**:
+- **Gather feedback on new features** from users who have access
+- **A/B test survey variations** alongside feature experiments
+- **Control survey visibility** with the same precision as feature rollouts
+- **Correlate feedback** with feature flag variants
 
-```bash
-npm run build
+## Linking Surveys to Feature Flags
+
+<!-- TODO: Add step-by-step instructions for linking surveys to feature flags -->
+
+### Step 1: Create or Identify Your Feature Flag
+
+Ensure you have a feature flag set up for the feature you want feedback on:
+
+```javascript
+// Check if user has access to the feature
+if (posthog.isFeatureEnabled('new-checkout-flow')) {
+  // Show new checkout experience
+  showNewCheckout();
+}
 ```
 
-The static files are generated in the `build` folder.
+### Step 2: Configure Survey Display Conditions
 
-## Deploy your site
+In your survey settings, add a feature flag condition:
 
-Test your production build locally:
+<!-- TODO: Add screenshot of feature flag condition UI -->
 
-```bash
-npm run serve
+### Step 3: Target Specific Variants
+
+For multivariate flags, you can target specific variants:
+
+```
+Show survey when:
+  - Feature flag: new-checkout-flow
+  - Variant: control OR variant-a
 ```
 
-The `build` folder is now served at [http://localhost:3000/](http://localhost:3000/).
+## Common Integration Patterns
 
-You can now deploy the `build` folder **almost anywhere** easily, **for free** or very small cost (read the **[Deployment Guide](https://docusaurus.io/docs/deployment)**).
+### New Feature Feedback
+
+```
+Feature Flag: new-dashboard
+Survey Target: Users with flag enabled
+Question: "How useful is the new dashboard?"
+```
+
+### A/B Test Feedback
+
+```
+Feature Flag: pricing-page-test
+Survey Target: Variant B only
+Question: "Was the pricing information clear?"
+```
+
+### Gradual Rollout Feedback
+
+```
+Feature Flag: ai-assistant (10% rollout)
+Survey Target: Users with flag enabled
+Question: "How helpful was the AI assistant?"
+```
+
+## Timing Considerations
+
+| Scenario | When to Survey |
+|----------|----------------|
+| New feature launch | After first interaction with feature |
+| A/B test | After completing the tested flow |
+| Bug fix validation | After using the fixed functionality |
+| Gradual rollout | Periodically during rollout phases |
+
+## Best Practices
+
+:::tip Segment by Variant
+
+When running A/B tests, create separate surveys for each variant to compare feedback directly.
+
+:::
+
+:::caution Flag Dependencies
+
+Ensure your feature flag is stable before linking surveys. Changing flag logic mid-survey can skew results.
+
+:::
+
+:::tip Use Flag Payloads
+
+Feature flag payloads can include survey configuration, allowing dynamic survey customization per variant.
+
+```javascript
+const flagPayload = posthog.getFeatureFlagPayload('new-feature');
+if (flagPayload?.showSurvey) {
+  // Trigger survey with custom questions from payload
+}
+```
+
+:::
+
+## Next Steps
+
+Congratulations! You've learned the core targeting methods. Continue to [Advanced Strategies](./congratulations.md) to see how to combine these techniques.

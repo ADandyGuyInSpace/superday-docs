@@ -4,20 +4,138 @@
  */
 
 .heroBanner {
+  min-height: calc(100vh - 60px);
   padding: 4rem 0;
-  text-align: center;
+  text-align: left;
   position: relative;
   overflow: hidden;
+  background-color: var(--ifm-background-color);
+  display: flex;
+  align-items: center;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.gridOverlay {
+  width: 100%;
+  height: 100%;
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, var(--ifm-color-primary) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--ifm-color-primary) 1px, transparent 1px);
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.heroContent {
+  max-width: 600px;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+  text-shadow: 3px 3px 0px var(--ifm-text-color);
+}
+
+:global([data-theme='dark']) .heroTitle {
+  color: var(--ifm-text-color);
+  text-shadow: 3px 3px 0px var(--ifm-color-primary);
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
 }
 
 .buttons {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.heroImage {
+  flex: 1;
+  display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.floatingLogo {
+  width: 300px;
+  height: auto;
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(5px 5px 0px var(--ifm-color-primary));
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes nightLightPulse {
+  0% {
+    filter: drop-shadow(0 0 15px var(--ifm-color-primary));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 40px var(--ifm-color-primary)) brightness(1.2);
+  }
+
+  100% {
+    filter: drop-shadow(0 0 15px var(--ifm-color-primary));
+  }
+}
+
+.nightLight {
+  animation: float 6s ease-in-out infinite, nightLightPulse 4s ease-in-out infinite !important;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    min-height: calc(100vh - 60px);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .heroContainer {
+    flex-direction: column-reverse;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .heroTitle {
+    font-size: 3rem;
+  }
 }
