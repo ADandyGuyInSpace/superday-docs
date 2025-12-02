@@ -399,6 +399,6 @@ posthog.reloadFeatureFlags(() => {
 
 ## Next steps
 
-Event-based targeting is the foundation for contextual surveys. Once you're comfortable with it, you can combine events with [Property-Based Targeting](./create-a-document.md) for even more precise audience selection.
+Event-based targeting is the foundation for contextual surveys. Once you're comfortable with it, you can combine events with [Property-Based Targeting](./property-based-targeting.md) for even more precise audience selection.
 
 The key insight is that the best time to ask users something is right after they've done something relevant. Event-based targeting makes that possible at scale.

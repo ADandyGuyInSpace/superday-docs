@@ -85,4 +85,4 @@ Properties must exist on the user before they can be targeted. Plan your data co
 
 ## Next Steps
 
-Learn about [Cohort-Based Targeting](./markdown-features.mdx) to target pre-defined user groups.
+Learn about [Cohort-Based Targeting](./cohort-based-targeting.mdx) to target pre-defined user groups.
