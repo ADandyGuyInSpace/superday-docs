@@ -111,4 +111,4 @@ if (flagPayload?.showSurvey) {
 
 ## Next Steps
 
-Congratulations! You've learned the core targeting methods. Continue to [Advanced Strategies](./congratulations.md) to see how to combine these techniques.
+Congratulations! You've learned the core targeting methods.
